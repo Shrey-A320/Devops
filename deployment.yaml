@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-app
+  namespace: todo-ns
+  labels:
+    app: todo-label
+
+spec:
+  replicas: 3
+  selector:
+     matchLabels:
+        app: todo-label
+
+  template:
+    metadata:
+      name: todo-pod
+      labels:
+        app: todo-label
+
+    spec:
+      containers:
+        - name: todo-container
+          image: shreyas97/node-app-test-new
+          ports:
+          - containerPort: 80
